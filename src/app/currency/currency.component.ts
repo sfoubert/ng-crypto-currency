@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CurrencyService } from "app/currency/currency.service";
-import { CryptoCompareResponse } from "app/model/crypto-compare-response";
-import { Coin } from "app/model/coin";
+import { Component, OnInit, Input } from '@angular/core';
+import { CurrencyService } from 'app/currency/currency.service';
+import { CryptoCompareResponse } from 'app/model/crypto-compare-response';
+import { Coin } from 'app/model/coin';
 
 @Component({
   selector: 'app-currency',
@@ -10,13 +10,19 @@ import { Coin } from "app/model/coin";
 })
 export class CurrencyComponent implements OnInit {
 
-  public coins: Coin[]= new Array();
+  public coins: Coin[] = new Array();
+
+  @Input()
+  public currencies: string[];
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
     this.currencyService.getCoinList().subscribe(coin => {
-      this.coins.push(coin);
+      // filter currencies to display
+      if (this.currencies.indexOf(coin.name) > -1) {
+        this.coins.push(coin);
+      }
     });
   }
 

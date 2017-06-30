@@ -4,13 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
-import { CryptoCompareResponse } from "app/model/crypto-compare-response";
-import { Coin } from "app/model/Coin";
+import { CryptoCompareResponse } from 'app/model/crypto-compare-response';
+import { Coin } from 'app/model/Coin';
 
 @Injectable()
 export class CurrencyService {
 
-  private API_BASE: string = 'https://www.cryptocompare.com/api';
+  private API_BASE = 'https://www.cryptocompare.com/api';
 
   constructor(private http: Http) { }
 
@@ -26,20 +26,20 @@ export class CurrencyService {
   }
 
   private convertToCoin(object: any): Coin {
-    let res: Coin = new Coin();
-    res.algorithm = object["Algorithm"];
-    res.coinName = object["CoinName"];
-    res.fullName = object["FullName"];
-    res.fullyPremined = object["FullyPremined"];
-    res.id = object["Id"];
-    res.imageUrl = object["ImageUrl"];
-    res.name = object["Name"];
-    res.preMinedValue = object["PreMinedValue"];
-    res.proofType = object["ProofType"];
-    res.dortOrder = object["DortOrder"];
-    res.totalCoinSupply = object["TotalCoinSupply"];
-    res.totalCoinsFreeFloat = object["TotalCoinsFreeFloat"];
-    res.url = object["Url"];
+    const res: Coin = new Coin();
+    res.algorithm = object['Algorithm'];
+    res.coinName = object['CoinName'];
+    res.fullName = object['FullName'];
+    res.fullyPremined = object['FullyPremined'];
+    res.id = object['Id'];
+    res.imageUrl = object['ImageUrl'];
+    res.name = object['Name'];
+    res.preMinedValue = object['PreMinedValue'];
+    res.proofType = object['ProofType'];
+    res.dortOrder = object['DortOrder'];
+    res.totalCoinSupply = object['TotalCoinSupply'];
+    res.totalCoinsFreeFloat = object['TotalCoinsFreeFloat'];
+    res.url = object['Url'];
     return res;
   }
 
