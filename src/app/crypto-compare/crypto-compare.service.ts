@@ -6,11 +6,13 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
 import { CryptoCompareResponse } from 'app/model/crypto-compare-response';
 import { Coin } from 'app/model/Coin';
+import { Price } from 'app/model/price';
 
 @Injectable()
-export class CurrencyService {
+export class CryptoCompareService {
 
   private API_BASE = 'https://www.cryptocompare.com/api';
+  private MINI_API_BASE = 'https://min-api.cryptocompare.com';
 
   constructor(private http: Http) { }
 
@@ -41,6 +43,15 @@ export class CurrencyService {
     res.totalCoinsFreeFloat = object['TotalCoinsFreeFloat'];
     res.url = object['Url'];
     return res;
+  }
+
+  /**
+   * Get price of a currency
+   */
+  getPrice(currency: string): Observable<Price> {
+    return this.http.get(this.MINI_API_BASE + '/data/price?fsym=' + currency + '&tsyms=BTC,USD,EUR')
+      .map(response => response.json() as Price)
+      .catch(this.handleError);
   }
 
   private handleError(error: Response | any) {

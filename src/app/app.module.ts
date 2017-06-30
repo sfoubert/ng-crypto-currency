@@ -1,22 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { CurrencyComponent } from './currency/currency.component';
-import { CurrencyService } from "app/currency/currency.service";
-import { HttpModule } from '@angular/http';
+import { CryptoCompareService } from 'app/crypto-compare/crypto-compare.service';
+import { CoinListComponent } from './coin-list/coin-list.component';
+import { PriceComponent } from './price/price.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrencyComponent
+    CoinListComponent,
+    PriceComponent,
+    PriceComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
   ],
   providers: [
-    CurrencyService
+    CryptoCompareService
     ],
   bootstrap: [AppComponent]
 })
