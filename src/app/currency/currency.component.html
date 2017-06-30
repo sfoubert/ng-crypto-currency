@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Choose currencies</h2>
+  <form>
+    <label class="checkbox-inline" *ngFor="let coin of coins">
+      <input type="checkbox" value="{{coin.id}}">{{coin.name}}
+    </label>
+  </form>
+</div>
+
+<p>
+  currency works!
+</p>
