@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
 import { CryptoCompareResponse } from 'app/model/crypto-compare-response';
-import { Coin } from 'app/model/Coin';
+import { Coin } from 'app/model/coin';
 import { Price } from 'app/model/price';
 
 @Injectable()
