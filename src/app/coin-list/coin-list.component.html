@@ -1,14 +1,14 @@
 <div class="container">
-  <h2>Choose currencies</h2>
+  <h2 class="currencies">Choose currencies</h2>
   <form>
-    <label class="checkbox-inline" *ngFor="let coin of coins">
+    <div class="checkbox" *ngFor="let coin of coins">
+      <img src="https://www.cryptocompare.com/{{coin.imageUrl}}?width=30">
       <input 
       type="checkbox" 
       name="coins"
       [(ngModel)]="coin.checked"
       (change)="changeSelectedCoins()"
       value="{{coin.id}}">{{coin.name}}
-    </label>
+    </div>
   </form>
-
 </div>
