@@ -12,4 +12,5 @@ export class Coin {
     public totalCoinSupply: string;
     public totalCoinsFreeFloat: string;
     public url: string;
+    public checked: boolean;
 }

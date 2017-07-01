@@ -1,25 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CryptoCompareService } from 'app/crypto-compare/crypto-compare.service';
-import { Price } from 'app/model/price';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
+import { Subscription } from 'rxjs/Subscription';
+import { CryptoCompareService } from 'app/crypto-compare/crypto-compare.service';
+import { Price } from 'app/model/price';
 
 @Component({
   selector: 'app-price',
   templateUrl: './price.component.html',
   styleUrls: ['./price.component.css']
 })
-export class PriceComponent implements OnInit {
+export class PriceComponent implements OnInit, OnDestroy {
 
   @Input()
   public currency: string;
 
   public price: Price;
 
+  private timer: Subscription;
+
   constructor(private cryptoCompareService: CryptoCompareService) { }
 
   ngOnInit() {
-    Observable.interval(20 * 1000)
+    this.getPrice();
+    this.timer = Observable.interval(20 * 1000)
       .subscribe(() => this.getPrice());
   }
 
@@ -29,4 +33,7 @@ export class PriceComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.timer.unsubscribe();
+  }
 }
