@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Coin } from 'app/model/Coin';
+import { Coin } from 'app/model/coin';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
