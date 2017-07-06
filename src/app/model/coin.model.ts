@@ -1,4 +1,4 @@
-export class Coin {
+export class CoinModel {
     public algorithm: string;
     public coinName: string;
     public fullName: string;

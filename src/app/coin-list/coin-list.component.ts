@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CryptoCompareService } from 'app/crypto-compare/crypto-compare.service';
 import { CoinService } from 'app/coin-list/coin.service';
-import { CryptoCompareResponse } from 'app/model/crypto-compare-response';
-import { Coin } from 'app/model/coin';
+import { CryptoCompareResponse } from 'app/model/crypto-compare.response';
+import { CoinModel } from 'app/model/coin.model';
 
 @Component({
   selector: 'app-coin-list',
@@ -11,7 +11,7 @@ import { Coin } from 'app/model/coin';
 })
 export class CoinListComponent implements OnInit {
 
-  public coins: Coin[] = new Array();
+  public coins: CoinModel[] = new Array();
 
   @Input()
   public currencies: string[];

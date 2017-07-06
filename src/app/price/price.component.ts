@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Subscription } from 'rxjs/Subscription';
 import { CryptoCompareService } from 'app/crypto-compare/crypto-compare.service';
-import { Price } from 'app/model/price';
+import { PriceModel } from 'app/model/price.model';
 
 @Component({
   selector: 'app-price',
@@ -40,7 +40,7 @@ export class PriceComponent implements OnInit, OnDestroy {
   @Input()
   public currency: string;
 
-  public price: Price;
+  public price: PriceModel;
 
   private timer: Subscription;
 

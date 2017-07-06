@@ -4,9 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
-import { CryptoCompareResponse } from 'app/model/crypto-compare-response';
-import { Coin } from 'app/model/coin';
-import { Price } from 'app/model/price';
+import { CryptoCompareResponse } from 'app/model/crypto-compare.response';
+import { CryptoCompareUtil } from 'app/crypto-compare/crypto-compare.util';
+import { CoinModel } from 'app/model/coin.model';
+import { PriceModel } from 'app/model/price.model';
+import { HistoModel } from 'app/model/histo.model';
 
 @Injectable()
 export class CryptoCompareService {
@@ -14,43 +16,60 @@ export class CryptoCompareService {
   private API_BASE = 'https://www.cryptocompare.com/api';
   private MINI_API_BASE = 'https://min-api.cryptocompare.com';
 
+  private DEFAULT_LIMIT = 60;
+
   constructor(private http: Http) { }
 
   /**
    * Get list of coins
    */
-  getCoinList(): Observable<Coin> {
+  getCoinList(): Observable<CoinModel> {
     return this.http.get(this.API_BASE + '/data/coinlist/')
       .map(response => response.json() as CryptoCompareResponse)
       .mergeMap(ccResponse => Object.keys(ccResponse.Data).map(key => ccResponse.Data[key]))
-      .map(object => this.convertToCoin(object))
+      .map(object => CryptoCompareUtil.convertToCoin(object))
       .catch(this.handleError);
-  }
-
-  private convertToCoin(object: any): Coin {
-    const res: Coin = new Coin();
-    res.algorithm = object['Algorithm'];
-    res.coinName = object['CoinName'];
-    res.fullName = object['FullName'];
-    res.fullyPremined = object['FullyPremined'];
-    res.id = object['Id'];
-    res.imageUrl = object['ImageUrl'];
-    res.name = object['Name'];
-    res.preMinedValue = object['PreMinedValue'];
-    res.proofType = object['ProofType'];
-    res.dortOrder = object['DortOrder'];
-    res.totalCoinSupply = object['TotalCoinSupply'];
-    res.totalCoinsFreeFloat = object['TotalCoinsFreeFloat'];
-    res.url = object['Url'];
-    return res;
   }
 
   /**
    * Get price of a currency
    */
-  getPrice(currency: string): Observable<Price> {
+  getPrice(currency: string): Observable<PriceModel> {
     return this.http.get(this.MINI_API_BASE + '/data/price?fsym=' + currency + '&tsyms=BTC,USD,EUR')
-      .map(response => response.json() as Price)
+      .map(response => response.json() as PriceModel)
+      .catch(this.handleError);
+  }
+
+  /**
+   * Get Histo by day
+   */
+  getHistoDay(currency: string): Observable<HistoModel> {
+    return this.http.get(this.MINI_API_BASE + '/data/histoday?fsym=' + currency + '&tsym=EUR&limit=' + this.DEFAULT_LIMIT)
+      .map(response => response.json() as CryptoCompareResponse)
+      .mergeMap(ccResponse => Object.keys(ccResponse.Data).map(key => ccResponse.Data[key]))
+      .map(object => CryptoCompareUtil.convertToHisto(object))
+      .catch(this.handleError);
+  }
+
+  /**
+   * Get Histo by hour
+   */
+  getHistoHour(currency: string): Observable<HistoModel> {
+    return this.http.get(this.MINI_API_BASE + '/data/histohour?fsym=' + currency + '&tsym=EUR&limit=' + this.DEFAULT_LIMIT)
+      .map(response => response.json() as CryptoCompareResponse)
+      .mergeMap(ccResponse => Object.keys(ccResponse.Data).map(key => ccResponse.Data[key]))
+      .map(object => CryptoCompareUtil.convertToHisto(object))
+      .catch(this.handleError);
+  }
+
+  /**
+   * Get Histo by minute
+   */
+  getHistoMinute(currency: string): Observable<HistoModel> {
+    return this.http.get(this.MINI_API_BASE + '/data/histominute?fsym=' + currency + '&tsym=EUR&limit=' + this.DEFAULT_LIMIT)
+      .map(response => response.json() as CryptoCompareResponse)
+      .mergeMap(ccResponse => Object.keys(ccResponse.Data).map(key => ccResponse.Data[key]))
+      .map(object => CryptoCompareUtil.convertToHisto(object))
       .catch(this.handleError);
   }
 
