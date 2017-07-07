@@ -10,6 +10,8 @@ import { CoinListComponent } from './coin-list/coin-list.component';
 import { PriceComponent } from './price/price.component';
 import { CoinService } from 'app/coin-list/coin.service';
 import { PriceListComponent } from './price-list/price-list.component';
+import { ChartComponent } from './chart/chart.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { PriceListComponent } from './price-list/price-list.component';
     CoinListComponent,
     PriceComponent,
     PriceComponent,
-    PriceListComponent
+    PriceListComponent,
+    ChartComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

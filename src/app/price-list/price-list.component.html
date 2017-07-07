@@ -1,3 +1,7 @@
 <div class="card-columns">
-    <app-price *ngFor="let coin of coins" currency="{{coin}}"></app-price>
+    <app-price *ngFor="let coin of coins" currency="{{coin}}" (currencyClicked)="currencyClicked($event)"></app-price>
+</div>
+
+<div *ngIf="displayChart">
+    <app-chart [currency]="currencyChart"></app-chart>
 </div>

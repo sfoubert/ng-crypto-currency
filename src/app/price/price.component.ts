@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
@@ -40,6 +40,9 @@ export class PriceComponent implements OnInit, OnDestroy {
   @Input()
   public currency: string;
 
+  @Output()
+  public currencyClicked: EventEmitter<string> = new EventEmitter();
+
   public price: PriceModel;
 
   private timer: Subscription;
@@ -60,12 +63,16 @@ export class PriceComponent implements OnInit, OnDestroy {
     );
   }
 
-  mouseover() {
+  public mouseover() {
     this.priceState = 'mouse';
   }
 
-  mouseleave() {
+  public mouseleave() {
     this.priceState = 'active';
+  }
+
+  public click() {
+    this.currencyClicked.emit(this.currency);
   }
 
   ngOnDestroy() {

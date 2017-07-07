@@ -13,12 +13,21 @@ export class PriceListComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
+  public displayChart = false;
+  public currencyChart = 'ETH';
+
+
   constructor(private coinService: CoinService) { }
 
   ngOnInit() {
     this.subscription = this.coinService.getSelectedCoins().subscribe(selectedCoins =>
       this.coins = selectedCoins
     );
+  }
+
+  public currencyClicked(currency: string) {
+    this.displayChart = true;
+    this.currencyChart = currency;
   }
 
   ngOnDestroy() {

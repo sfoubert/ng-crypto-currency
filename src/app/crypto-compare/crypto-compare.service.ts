@@ -16,7 +16,7 @@ export class CryptoCompareService {
   private API_BASE = 'https://www.cryptocompare.com/api';
   private MINI_API_BASE = 'https://min-api.cryptocompare.com';
 
-  private DEFAULT_LIMIT = 60;
+  private DEFAULT_LIMIT = 120;
 
   constructor(private http: Http) { }
 
