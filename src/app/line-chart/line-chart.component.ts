@@ -8,11 +8,13 @@ import * as d3 from 'd3';
 })
 export class LineChartComponent implements OnInit, OnChanges {
 
-  @ViewChild('chart') private chartContainer: ElementRef;
+  @ViewChild('chart')
+  private chartContainer: ElementRef;
 
-  @Input() public data: Array<any>;
+  @Input()
+  public data: Array<any>;
 
-  private margin: any = { top: 20, bottom: 20, left: 30, right: 20 };
+  private margin: any = { top: 20, bottom: 20, left: 40, right: 20 };
 
   constructor() { }
 
@@ -20,13 +22,16 @@ export class LineChartComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('change : ' + this.data);
-    //const element = this.chartContainer.nativeElement;
-    //d3.select(element).select('svg').remove();
+    this.removeChart();
     this.createChart();
   }
 
-  createChart() {
+  private removeChart() {
+    const element = this.chartContainer.nativeElement;
+    d3.select(element).select('svg').remove();
+  }
+
+  private createChart() {
     const element = this.chartContainer.nativeElement;
     const width = +element.offsetWidth - this.margin.left - this.margin.right;
     const height = +element.offsetHeight - this.margin.top - this.margin.bottom;
@@ -52,11 +57,12 @@ export class LineChartComponent implements OnInit, OnChanges {
 
 
     const datum = this.data.map(function (d) {
-      return { date: new Date(d.date * 1000), close: d.close };
+      const date = { date: new Date(d.time * 1000) };
+      return Object.assign(d, date);
     });
 
     // define X & Y domains
-    const xDomain = this.data.map(d => new Date(d.date * 1000));
+    const xDomain = this.data.map(d => new Date(d.time * 1000));
     const yDomain = [0, d3.max(this.data, d => d.close)];
 
     x.domain(d3.extent(xDomain));

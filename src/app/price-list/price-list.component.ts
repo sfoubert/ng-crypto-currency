@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ChartComponent } from '../chart/chart.component';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CoinService } from 'app/coin-list/coin.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -14,8 +15,7 @@ export class PriceListComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   public displayChart = false;
-  public currencyChart = 'ETH';
-
+  public currency = 'ETH';
 
   constructor(private coinService: CoinService) { }
 
@@ -27,7 +27,7 @@ export class PriceListComponent implements OnInit, OnDestroy {
 
   public currencyClicked(currency: string) {
     this.displayChart = true;
-    this.currencyChart = currency;
+    this.currency = currency;
   }
 
   ngOnDestroy() {
