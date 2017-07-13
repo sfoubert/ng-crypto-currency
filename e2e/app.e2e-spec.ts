@@ -7,8 +7,8 @@ describe('ng-crypto-currency App', () => {
     page = new NgCryptoCurrencyPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display Dashboard', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!!');
+    expect(page.getParagraphText()).toEqual('Dashboard');
   });
 });

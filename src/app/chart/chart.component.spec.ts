@@ -1,3 +1,6 @@
+import { HttpModule } from '@angular/http';
+import { CryptoCompareService } from '../crypto-compare/crypto-compare.service';
+import { LineChartComponent } from '../line-chart/line-chart.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChartComponent } from './chart.component';
@@ -8,7 +11,9 @@ describe('ChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChartComponent ]
+      imports: [ HttpModule ],
+      declarations: [ ChartComponent, LineChartComponent ],
+      providers: [ CryptoCompareService ],
     })
     .compileComponents();
   }));

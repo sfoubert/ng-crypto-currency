@@ -1,3 +1,6 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
+import { CryptoCompareService } from '../crypto-compare/crypto-compare.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PriceComponent } from './price.component';
@@ -8,7 +11,9 @@ describe('PriceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PriceComponent ]
+      imports: [HttpModule, BrowserAnimationsModule],
+      declarations: [ PriceComponent ],
+      providers: [ CryptoCompareService ],
     })
     .compileComponents();
   }));

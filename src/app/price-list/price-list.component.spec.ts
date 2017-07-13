@@ -1,3 +1,7 @@
+import {LineChartComponent} from '../line-chart/line-chart.component';
+import {ChartComponent} from '../chart/chart.component';
+import { PriceComponent } from '../price/price.component';
+import { CoinService } from '../coin-list/coin.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PriceListComponent } from './price-list.component';
@@ -8,7 +12,13 @@ describe('PriceListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PriceListComponent ]
+      declarations: [
+        PriceListComponent,
+        PriceComponent,
+        ChartComponent,
+        LineChartComponent,
+      ],
+      providers: [ CoinService ],
     })
     .compileComponents();
   }));

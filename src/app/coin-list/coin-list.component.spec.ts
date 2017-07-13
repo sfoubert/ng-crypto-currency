@@ -1,6 +1,11 @@
+import { CoinService } from './coin.service';
+import { HttpModule } from '@angular/http';
+import { CryptoCompareService } from '../crypto-compare/crypto-compare.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoinListComponent } from './coin-list.component';
+import { FormsModule } from '@angular/forms';
+
 
 describe('CoinListComponent', () => {
   let component: CoinListComponent;
@@ -8,7 +13,9 @@ describe('CoinListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoinListComponent ]
+      imports: [ HttpModule, FormsModule ],
+      declarations: [ CoinListComponent ],
+      providers: [ CryptoCompareService, CoinService ],
     })
     .compileComponents();
   }));

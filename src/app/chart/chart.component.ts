@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { CryptoCompareService } from 'app/crypto-compare/crypto-compare.service';
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/toArray';
 
 @Component({
