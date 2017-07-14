@@ -9,7 +9,7 @@ import { PriceModel } from 'app/model/price.model';
 @Component({
   selector: 'app-price',
   templateUrl: './price.component.html',
-  styleUrls: ['./price.component.css'],
+  styleUrls: ['./price.component.scss'],
   animations: [
     trigger('priceState', [
       state('void', style({

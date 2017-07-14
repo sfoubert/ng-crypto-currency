@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-price-list',
   templateUrl: './price-list.component.html',
-  styleUrls: ['./price-list.component.css']
+  styleUrls: ['./price-list.component.scss']
 })
 export class PriceListComponent implements OnInit, OnDestroy {
 
