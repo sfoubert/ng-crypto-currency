@@ -18,22 +18,19 @@
 .sidebar {
   padding-left: 0;
   padding-right: 0;
-}
 
-.sidebar .nav {
-  margin-bottom: 20px;
-}
-
-.sidebar .nav-item {
-  width: 100%;
-}
-
-.sidebar .nav-item + .nav-item {
-  margin-left: 0;
-}
-
-.sidebar .nav-link {
-  border-radius: 0;
+  .nav {
+    margin-bottom: 20px;
+  }
+  .nav-item {
+    width: 100%;
+  }
+  .nav-item + .nav-item {
+    margin-left: 0;
+  }
+  .nav-link {
+    border-radius: 0;
+  }
 }
 
 /*
@@ -43,11 +40,11 @@
  /* Placeholders */
 .placeholders {
   padding-bottom: 3rem;
-}
 
-.placeholder img {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  img {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
 }
 
  /* Dashboard */
