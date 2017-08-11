@@ -6,15 +6,15 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class CoinService {
 
-  private subjectSelectedCoins: Subject<string[]> = new Subject();
+  private subjectSelectedCoins: Subject<CoinModel[]> = new Subject();
 
   constructor() { }
 
-  public getSelectedCoins(): Observable<string[]> {
+  public getSelectedCoins(): Observable<CoinModel[]> {
     return this.subjectSelectedCoins.asObservable();
   }
 
-  public setSelectedCoins(selectedCoins: string[]) {
+  public setSelectedCoins(selectedCoins: CoinModel[]) {
     this.subjectSelectedCoins.next(selectedCoins);
   }
 }

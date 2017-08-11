@@ -22,7 +22,8 @@ export class CoinListComponent implements OnInit {
   ngOnInit() {
     this.cryptoCompareService.getCoinList().subscribe(coin => {
       // filter currencies to display
-      if (this.currencies.indexOf(coin.name) > -1) {
+      if ( !this.currencies
+        || (this.currencies && this.currencies.indexOf(coin.name) > -1)) {
         this.coins.push(coin);
       }
     });
@@ -32,10 +33,9 @@ export class CoinListComponent implements OnInit {
     this.coinService.setSelectedCoins(this.getSelectedCoins());
   }
 
-  public getSelectedCoins(): string[] {
+  public getSelectedCoins(): CoinModel[] {
     return this.coins
-      .filter(coin => coin.checked)
-      .map(coin => coin.name)
+      .filter(coin => coin.checked);
   }
 
 }

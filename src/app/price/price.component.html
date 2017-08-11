@@ -1,8 +1,10 @@
-<div class="card" [@priceState]="priceState" (mouseover)="mouseover()" (mouseleave)="mouseleave()" (click)="click()">
-  <div class="card-block">
-    <h4 class="card-title">{{currency}}</h4>
-    <p class="card-text">EUR : {{price?.EUR}}</p>
-    <p class="card-text">USD : {{price?.USD}}</p>
-    <p class="card-text">BTC : {{price?.BTC}}</p>
+  <div class="card card-block"
+   [@priceState]="priceState" (mouseover)="mouseover()" (mouseleave)="mouseleave()" (click)="click()">
+      <h4 class="card-title">{{coinSelected.coinName}}</h4>
+      <p class="card-text">
+        <img src="https://www.cryptocompare.com/{{coinSelected.imageUrl}}?width=40">
+      </p>
+      <p class="card-text">EUR : {{price?.EUR}}</p>
+      <p class="card-text">USD : {{price?.USD}}</p>
+      <p class="card-text">BTC : {{price?.BTC}}</p>
   </div>
-</div>

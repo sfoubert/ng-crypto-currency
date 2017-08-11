@@ -2,6 +2,7 @@ import { ChartComponent } from '../chart/chart.component';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CoinService } from 'app/coin-list/coin.service';
 import { Subscription } from 'rxjs/Subscription';
+import { CoinModel } from '../model/coin.model';
 
 @Component({
   selector: 'app-price-list',
@@ -10,12 +11,12 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class PriceListComponent implements OnInit, OnDestroy {
 
-  coins: string[];
+  coins: CoinModel[];
 
   private subscription: Subscription;
 
   public displayChart = false;
-  public currency = 'ETH';
+  public currency: string;
 
   constructor(private coinService: CoinService) { }
 

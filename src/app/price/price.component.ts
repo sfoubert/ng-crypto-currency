@@ -5,6 +5,7 @@ import 'rxjs/add/observable/interval';
 import { Subscription } from 'rxjs/Subscription';
 import { CryptoCompareService } from 'app/crypto-compare/crypto-compare.service';
 import { PriceModel } from 'app/model/price.model';
+import { CoinModel } from '../model/coin.model';
 
 @Component({
   selector: 'app-price',
@@ -38,7 +39,7 @@ import { PriceModel } from 'app/model/price.model';
 export class PriceComponent implements OnInit, OnDestroy {
 
   @Input()
-  public currency: string;
+  public coinSelected: CoinModel;
 
   @Output()
   public currencyClicked: EventEmitter<string> = new EventEmitter();
@@ -58,7 +59,7 @@ export class PriceComponent implements OnInit, OnDestroy {
   }
 
   private getPrice() {
-    this.cryptoCompareService.getPrice(this.currency).subscribe(price =>
+    this.cryptoCompareService.getPrice(this.coinSelected.name).subscribe(price =>
       this.price = price
     );
   }
@@ -72,7 +73,7 @@ export class PriceComponent implements OnInit, OnDestroy {
   }
 
   public click() {
-    this.currencyClicked.emit(this.currency);
+    this.currencyClicked.emit(this.coinSelected.name);
   }
 
   ngOnDestroy() {
