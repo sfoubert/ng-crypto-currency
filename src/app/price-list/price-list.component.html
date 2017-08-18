@@ -1,10 +1,12 @@
-<div class="container-fluid">
-    <div class="row flex-row flex-nowrap">
+<section class="row text-center placeholders">
+    <div class="card-columns">
         <app-price *ngFor="let coin of coins" [coinSelected]="coin" (currencyClicked)="currencyClicked($event)">
-    </app-price>
+        </app-price>
     </div>
-</div>
+</section>
 
-<div *ngIf="displayChart">
-    <app-chart [currency]="currency"></app-chart>
-</div>
+<section>
+    <div *ngIf="displayChart">
+        <app-chart [currency]="currency"></app-chart>
+    </div>
+</section>
